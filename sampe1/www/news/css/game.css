@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: appfont;
+	src: url(../Typeface/impact.woff);
+}
+
+html, body, *, ul {
+	margin: 0;
+	padding: 0;
+	font-family: appfont, Impact, Arial, Helvetica, sans-serif;
+}
+
+
+html, body {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+}
+
+a {
+	TEXT-DECORATION: none
+}
+
+a:link {
+	color: #3a95ff;
+}
+
+a:visited {
+	color: #3a95ff;
+}
+
+#license {
+	color: #999;
+	font-size: 15px;
+	position: absolute;
+	top: 900px;
+	left: 650px;
+}
+
+#license a {
+	color: #08C;
+	margin-left: 10px;
+}

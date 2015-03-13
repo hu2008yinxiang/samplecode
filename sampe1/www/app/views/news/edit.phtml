@@ -1,0 +1,55 @@
+<fieldset>
+	<legend>Edit News <?php echo $news->news_id;?></legend>
+	<form action="" method="post" class="form-horizontal">
+		<input type="hidden"
+			name="<?php echo $this->security->getTokenKey();?>"
+			value="<?php echo $this->security->getToken();?>" />
+		<div class="form-group">
+			<label for="type1" class="control-label col-sm-3">Type</label>
+			<div class="col-sm-8">
+				<select class="form-control" id="type1" name="type">
+				<?php foreach ($types as $type):?>
+				<option value="<?php echo $type;?>"
+						<?php echo $news->type == $type?'selected':'';?>><?php echo $type;?></option>
+				<?php endforeach;?>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="start1" class="control-label col-sm-3">Start</label>
+			<div class="col-sm-8">
+				<input class="form-control" type="text" name="start_date"
+					id="start1" value="<?php echo $news->start_date;?>"
+					placeholder="yyyy-mm-dd HH:MM:SS" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="end1" class="control-label col-sm-3">End</label>
+			<div class="col-sm-8">
+				<input class="form-control" type="text" name="end_date" id="end1"
+					value="<?php echo $news->end_date;?>"
+					placeholder="yyyy-mm-dd HH:MM:SS" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="title1" class="control-label col-sm-3">Title</label>
+			<div class="col-sm-8">
+				<input class="form-control" type="text" name="title" id="title1"
+					value="<?php echo $news->title;?>" placeholder="Only for Festival" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="content1" class="control-label col-sm-3">Content</label>
+			<div class="col-sm-8">
+				<input class="form-control" type="text" name="content" id="content1"
+					value="<?php echo $news->content;?>"
+					placeholder="Only for Festival (like 2.5/3.0)" />
+			</div>
+		</div>
+		<div class="form-group">
+			<button class="col-sm-2 col-sm-offset-5 btn btn-primary"
+				type="submit">Save</button>
+		</div>
+	</form>
+	<p><?php $this->flashSession->output();?></p>
+</fieldset>

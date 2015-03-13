@@ -1,0 +1,61 @@
+<div class="col-md-6 col-md-offset-3">
+	<div
+		class="panel <?php echo ($this->flash->has('error'))?'panel-danger':'panel-primary';?>">
+		<div class="panel-heading">Add Item</div>
+		<div class="panel-body">
+
+			<form action="" method="post" class="form-horizontal" role="form">
+
+				<div class="form-group">
+					<label for="index1" class="control-label col-sm-2">Index</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="index" id="index1"
+							value="<?php echo $index;?>" placeholder="Item index" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="price1" class="control-label col-md-2">Price</label>
+					<div class="col-md-10">
+						<input type="text" class="form-control" name="price" id="price1"
+							value="<?php echo $price;?>" placeholder="Item price" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="iapid1" class="control-label col-md-2">IAP ID</label>
+					<div class="col-md-10">
+						<input type="text" class="form-control" name="iapid" id="iapid1"
+							value="<?php echo $iapid;?>" placeholder="Item IAP ID" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="amount1" class="control-label col-md-2">Amount</label>
+					<div class="col-md-10">
+						<input type="text" class="form-control" name="amount"
+							id="amount1" value="<?php echo $amount;?>"
+							placeholder="Item IAP ID" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sale1" class="control-label col-md-2">Sale</label>
+					<div class="col-md-10">
+						<label><input type="radio" name="sale" value="1" checked="checked" />
+							x1 (not on sale.) &nbsp;&nbsp;&nbsp;</label> <label><input type="radio" name="sale"
+							value="2" /> x2 &nbsp;&nbsp;&nbsp;</label> <label><input type="radio"
+							name="sale" value="3" /> x3 &nbsp;&nbsp;&nbsp;</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-4 col-md-offset-4">
+						<input type="submit" class="form-control btn btn-primary"
+							value="Add" /> <input type="hidden"
+							name="<?php echo $this->security->getTokenKey();?>"
+							value="<?php echo $this->security->getToken();?>" />
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="panel-footer">
+			<?php $this->flash->output();?>
+			</div>
+	</div>
+</div>

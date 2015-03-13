@@ -1,0 +1,90 @@
+<form action="" method="post">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Bank</div>
+		<div class="panel-body panel-body-has-table">
+			<div class="table-responsive">
+				<table class="table table-bordered table-scrollable">
+					<thead>
+						<tr>
+							<th>Sale</th>
+							<th>IAP ID</th>
+							<th>Price</th>
+							<th>Amount</th>
+							<th>Type</th>
+							<th>Operations</th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php
+    for ($index = 0; $index < 7; ++ $index) {
+        $items = $config[$index];
+        $name_prefix = 'items[' . $index . ']';
+        ?>
+       <tr>
+							<td colspan="6"><table
+									class="table table-striped table-bordered table-hover table-scrollable table-condensed">
+
+									<caption>Slot #<?php echo $index;?></caption>
+<?php foreach ($items as $item){?>
+<tr>
+										<td><input type="text"
+											name="<?php echo $name_prefix,'[sale][]';?>"
+											value="<?php echo $item['sale'];?>" placeholder="Sale" /></td>
+										<td><input type="text"
+											name="<?php echo $name_prefix,'[iapid][]';?>"
+											value="<?php echo $item['iapid'];?>" placeholder="IAP ID" /></td>
+										<td><input type="text"
+											name="<?php echo $name_prefix,'[price][]';?>"
+											value="<?php echo $item['price'];?>" placeholder="Price" /></td>
+										<td><input type="text"
+											name="<?php echo $name_prefix,'[amount][]';?>"
+											value="<?php echo $item['amount'];?>" placeholder="Amount" /></td>
+										<td><input type="text"
+											name="<?php echo $name_prefix,'[type][]';?>"
+											value="<?php echo $item['type'];?>"
+											placeholder="(chip|diamond)" /></td>
+										<td><a href="#"
+											onclick="onAdd(this,'<?php echo $name_prefix;?>')">Add</a>|<a
+											href="#" onclick="onDelete(this)">Delete</a></td>
+									</tr>
+<?php }?>
+								</table></td>
+						</tr>
+					<?php }?>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="6" align="right"><input type="hidden"
+								name="<?php echo $this->security->getTokenKey();?>"
+								value="<?php echo $this->security->getToken();?>" /> <label
+								for="">Selectors(Seprated with comma)</label>
+								<?php foreach ($selectors as $i=>$selector){?>
+								#<?php echo $i;?> <input style="width: 20pt;" type="text"
+								name="selectors[<?php echo $i;?>]"
+								value="<?php echo $selector?>" />
+								<?php }?>
+								<button class="btn btn-primary" type="submit">Save</button></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+        function onAdd(ele,name){
+            var html_str = '<tr>' 
+                + '<td><input type="text" name="' + name + '[sale][]" placeholder="Sale" /></td>'
+                + '<td><input type="text" name="' + name + '[iapid][]" placeholder="IAP ID" /></td>'
+                + '<td><input type="text" name="' + name + '[price][]" placeholder="Price" /></td>'
+                + '<td><input type="text" name="' + name + '[amount][]" placeholder="Amount" /></td>'
+                + '<td><input type="text" name="' + name + '[type][]" placeholder="(chip|diamond)" /></td>'
+                + '<td><a href="#" onclick="onAdd(this,\''+ name +'\')">Add</a>|<a href="#" onclick="onDelete(this)">Delete</a></td></td>'
+                + '</tr>';
+            jQuery(ele).parents('tr:first').after(html_str);
+        }
+        function onDelete(ele){
+            jQuery(ele).parents('tr:first').remove();
+        }
+</script>

@@ -1,0 +1,108 @@
+<form action="" method="post">
+	<div
+		class="panel panel-<?php echo $this->flash->has('error')?'danger':'primary';?>">
+		<div class="panel-heading">Shop Config Data</div>
+		<div class="panel-body panel-body-has-table">
+			<div class="table-responsive">
+				<table
+					class="table table-striped table-bordered table-hover table-scrollable">
+					<thead>
+						<tr>
+							<th>Index</th>
+							<th>IAP ID</th>
+							<th>Price</th>
+							<th>Amount</th>
+							<th>Sale(x1,x2,x3)</th>
+							<th>Operations</th>
+						</tr>
+					</thead>
+					<tbody>
+	<?php
+if (! empty($data)) {
+    foreach ($data as $k => $v) {
+        $error = isset($v['error']) ? $v['error'] : false;
+        ?>
+	<tr class="<?php echo $error?'danger':''; ?>">
+							<td><input class="form-control" type="text" name="index[]"
+								value="<?php echo $v['index'];?>" placeholder="Index" /></td>
+							<td><input class="form-control" type="text" name="iapid[]"
+								value="<?php echo $v['iapid'];?>" placeholder="IAP ID" /></td>
+							<td><input class="form-control" type="text" name="price[]"
+								value="<?php echo $v['price'];?>" placeholder="Price" /></td>
+							<td><input class="form-control" type="text" name="amount[]"
+								value="<?php echo $v['amount'];?>" placeholder="Amount" /></td>
+							<td><input class="form-control" type="text" name="sale[]"
+								value="<?php echo $v['sale'];?>" placeholder="Sale (1,2,3)" /></td>
+							<td><div class="btn-group">
+									<a href="javascript:void(0);" onclick="addRow(this);"
+										class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>
+										Insert </a><a href="javascript:void(0);"
+										onclick="removeRow(this);" class="btn btn-danger"><span
+										class="glyphicon glyphicon-trash"></span> Delete </a>
+								</div></td>
+						</tr>
+	<?php
+    }
+}
+?></tbody>
+					<tfoot>
+						<tr class="info">
+							<td colspan="6" align="right"><input type="hidden"
+								name="<?php echo $this->security->getTokenKey();?>"
+								value="<?php echo $this->security->getToken();?>" />
+								<div class="btn-group">
+									<a href="javascript:window.location.href=window.location.href;"
+										class="btn btn-warning"><span
+										class="glyphicon glyphicon-refresh"></span> Reload</a> <a
+										href="javascript:void(0);" onclick="addRow(this);"
+										class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>
+										Add Item</a>
+									<button type="submit" name="action" value="save"
+										class="btn btn-primary">
+										<span class="glyphicon glyphicon-floppy-disk"></span> Save
+										Config
+									</button>
+								</div></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+		<div class="panel-footer"><?php $this->flash->output();?></div>
+	</div>
+
+</form>
+
+<script>
+function removeRow(ele){
+	jQuery(ele).parents('tr').remove();
+}
+function addRow(ele){
+	jQuery(ele).parents('tr').before('\
+			<tr>\
+			<td><input class="form-control" type="text" name="index[]"\
+				value=""  placeholder="Index" /></td>\
+			<td><input class="form-control" type="text" name="iapid[]"\
+				value=""  placeholder="IAP ID" /></td>\
+			<td><input class="form-control" type="text" name="price[]"\
+				value=""  placeholder="Price" /></td>\
+			<td><input class="form-control" type="text" name="amount[]"\
+				value=""  placeholder="Amount" /></td>\
+			<td><input class="form-control" type="text" name="sale[]"\
+				value=""  placeholder="Sale (1,2,3)" /></td>\
+			<td><div class="btn-group">\
+        			<a href="javascript:void(0);" onclick="addRow(this);"\
+        				class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>\
+        				Insert </a><a href="javascript:void(0);"\
+        				onclick="removeRow(this);" class="btn btn-danger"><span\
+        				class="glyphicon glyphicon-trash"></span> Delete </a>\
+        		</div></td>\
+		</tr>\
+		');
+}
+(function(win){
+	win.jQueryLoaded(function(){
+		//jQuery('.panel-body>.table').parent().css('padding: 0;');
+    });
+})(window);
+</script>

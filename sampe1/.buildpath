@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry kind="lib" path="www/app/library/Redis/Adapter/predis_0.8.5.phar"/>
+	<buildpathentry kind="lib" path="www/app/library/Mail/Adapter/phpmailer.phar"/>
+	<buildpathentry kind="lib" path="www/app/library/View/Engine/PHPTAL-1.3.0.phar"/>
+	<buildpathentry excluding="css/|data/|js/|static/|app/logs/|app/config/iphotos/out/|app/config/iphotos/src/|app/config/iphotos/" kind="src" path="www"/>
+</buildpath>

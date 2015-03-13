@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>上传错误报告</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php echo $this->tag->stylesheetLink('bootcss/css/bootstrap.css');?>
+<?php echo $this->tag->javascriptInclude('js/jquery-1.10.2.min.js');?>
+<?php echo $this->tag->javascriptInclude('bootcss/js/bootstrap.js');?>
+<style type="text/css">
+body {
+	padding-top: 70px;
+}
+</style>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#navbar-data-div">
+				<span class="sr-only">切换</span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<?php echo \Phalcon\Tag::linkTo(array("view",'崩溃报告','class'=>'navbar-brand'));?>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar-data-div">
+			<ul class="nav navbar-nav">
+				<li class=""><?php echo \Phalcon\Tag::linkTo(array("view",'查看'));?></li>
+				<li class="active"><?php echo \Phalcon\Tag::linkTo(array('upload','上传'))?></li>
+				<li class=""><?php echo \Phalcon\Tag::linkTo(array("archieve",'历史归档'));?></li>
+				<li class=""><?php echo \Phalcon\Tag::linkTo(array("view/recent",'最新崩溃'));?></li>
+			<li class=""><?php echo \Phalcon\Tag::linkTo(array("manage/index",'SO管理'));?></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<h2>
+			上传DMP文件
+			<div class="btn-group pull-right"><?php echo \Phalcon\Tag::linkTo(array('upload/so','上传SO文件','class'=>'btn btn-primary'));?></div>
+		</h2>
+		<?php $this->flashSession->output();?>
+		<form action="" class="form-horizontal" method="post"
+			enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="project" class="control-label col-sm-2">项目</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="project" id="project" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="project" class="control-label col-sm-2">版本号</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" name="versionCode"
+						id="versionCode" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="control-label col-sm-2">状态</label>
+				<div class="col-sm-10">
+					<label for="" class="radio-inline"><input type="radio"
+						value="release" name="status" checked="checked" />Release</label>
+					<label for="" class="radio-inline"><input type="radio"
+						value="debug" name=status />Debug</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="file" class="control-label col-sm-2">DMP文件</label>
+				<div class="col-sm-10">
+					<input type="file" class="form-control" name="file" id="file" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="brand" class="control-label col-sm-2">品牌</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="brand" id="brand" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="project" class="control-label col-sm-2">型号</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="model" id="model" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="project" class="control-label col-sm-2">制造商</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="manufacturer"
+						id="manufacturer" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="project" class="control-label col-sm-2">版本名称</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="versionName"
+						id="versionName" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="project" class="control-label col-sm-2">安卓API版本</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="androidSdkInt"
+						id="androidSdkInt" />
+				</div>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="form-control btn btn-primary">上传</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+
+<div
+	class="panel <?php echo ($this->flash->has('error'))?'panel-danger':'panel-primary';?>">
+	<div class="panel-heading">Special Offer Order Config</div>
+	<div class="panel-body">
+		<div>
+			<form action="" method="post" class="form-horizontal" role="form">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>IAP ID</th>
+							<th>Price</th>
+							<th>Base Slot</th>
+							<th>Delta Slot</th>
+							<th>Amount</th>
+							<th>Life Time</th>
+							<th>Operations</th>
+						</tr>
+					</thead>
+					<tbody>
+<?php foreach ($items as $item){?>
+<tr>
+							<td><input type="text" name="iapid[]"
+								value="<?php echo $item['iapid'];?>" placeholder="IAP ID" /></td>
+							<td><input type="text" name="price[]"
+								value="<?php echo $item['price'];?>" placeholder="Price" /></td>
+							<td><input type="text" name="base_slot[]"
+								value="<?php echo $item['base_slot'];?>" placeholder="Base Slot" /></td>
+							<td><input type="text" name="delta_slot[]"
+								value="<?php echo $item['delta_slot'];?>" placeholder="Delta Slot" /></td>
+							<td><input type="text" name="amount[]"
+								value="<?php echo $item['amount'];?>" placeholder="Amount" /></td>
+							<td><input type="text" name="life_time[]"
+								value="<?php echo $item['life_time'];?>" placeholder="Life Time" /></td>
+							<td><a href="#" onclick="onAdd(this)">Add</a> | <a href="#"
+								onclick="onDelete(this)">Delete</a></td>
+						</tr>
+<?php }?>
+						</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="7" align="right"><a href="#" class="btn btn-primary" onclick="onAdd(this)">Add</a></td>
+						</tr>
+					</tfoot>
+				</table>
+
+				<div class="form-group">
+					<div class="col-md-4 col-md-offset-2">
+						<input type="submit" class="form-control btn btn-primary"
+							value="Save Config" /> <input type="hidden"
+							name="<?php echo $this->security->getTokenKey();?>"
+							value="<?php echo $this->security->getToken();?>" />
+					</div>
+					<div class="col-md-4 col-md-offset-1">
+						<a href="<?php echo $this->url->get('special-offer/rule');?>"
+							class="form-control btn btn-default">Edit Rule</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+	<div class="panel-footer">
+			<?php $this->flash->output();?>
+			</div>
+</div>
+<script>
+function onAdd(ele){
+	var tr_str = '<tr>'+
+		'<td><input type="text" name="iapid[]" value="" placeholder="IAP ID" /></td>'+
+		'<td><input type="text" name="price[]" value="" placeholder="Price" /></td>'+
+		'<td><input type="text" name="base_slot[]" value="" placeholder="Base Slot" /></td>'+
+		'<td><input type="text" name="delta_slot[]" value="" placeholder="Delta Slot" /></td>'+
+		'<td><input type="text" name="amount[]" value="" placeholder="Amount" /></td>'+
+		'<td><input type="text" name="life_time[]" value="" placeholder="Life Time" /></td>'+
+		'<td><a href="#" onclick="onAdd(this)">Add</a> | <a href="#" onclick="onDelete(this)">Delete</a></td>'+
+	'</tr>';
+	jQuery(ele).parents('table:first').children('tbody').append(tr_str);
+}
+function onDelete(ele){
+	jQuery(ele).parents('tr:first').remove();
+}
+</script>

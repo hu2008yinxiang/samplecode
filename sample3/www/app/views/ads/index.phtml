@@ -1,0 +1,68 @@
+<div>
+	<a href="<?php echo $this->url->get('ads/add');?>"
+		class="btn btn-primary pull-right">Add Ad</a>
+</div>
+<div class="clearfix"></div>
+<style>
+<!--
+img.image-pp {
+	max-width: 100px;
+	min-width: 100px;
+	width: 100px;
+}
+-->
+</style>
+<table class="table table-bordered">
+	<tr>
+		<th>AD ID</th>
+		<th>Package</th>
+		<th>Image</th>
+		<th>Type</th>
+		<th>Interval</th>
+		<th>URL</th>
+		<th>Redirect URL</th>
+		<th>Action</th>
+	</tr>
+	<?php foreach ($page->items as $adItem){?>
+	<tr>
+		<td><?php echo $adItem->aid;?></td>
+		<td><?php echo $adItem->package;?></td>
+		<td><a href="<?php echo $img_url=$adItem->getImageUrl();?>"><img
+				class="image-pp" src="<?php echo $img_url;?>" /></a></td>
+		<td><?php echo $adItem->type;?></td>
+		<td><?php echo $adItem->interval;?></td>
+		<td><a href="<?php echo $adItem->getUrl();?>">GOTO</a></td>
+		<td><a href="<?php echo $adItem->getRedirectUrl();?>">REDIRDCT</a></td>
+		<td><form method="post">
+				<input type="hidden" name="aid" value="<?php echo $adItem->aid;?>">
+				<input type="hidden" name="action" value="delete"> <input
+					type="submit" class="btn btn-sm btn-danger" value="Delete">
+			</form></td>
+	</tr>
+	<?php }?>
+</table>
+<ul class="pagination" style="margin-top: 0; margin-bottom: 0;">
+		<?php if($page->total_pages > 0){?>
+		<?php
+    $cp = $page->current;
+    $total = $page->total_pages;
+    $first = 1;
+    $last = $page->last;
+    $b = $cp - 6;
+    $e = $cp + 6;
+    $b = $b < $first ? $first : $b;
+    $e = $e > $last ? $last : $e;
+    ?>
+    <li><a href="<?php echo $this->url->get('ads',array('p'=>1));?>">&laquo;</a></li>
+    <?php while($b< $cp){?>
+    <li><a href="<?php echo $this->url->get('ads',array('p'=>$b));?>"><?php echo $b;++$b;?></a></li>
+    <?php }?>
+    <li class="active"><a href="#"><?php echo $cp;$b = $cp+1;?></a></li>
+    <?php while($e >= $b){?>
+    <li><a href="<?php echo $this->url->get('ads',array('p'=>$b));?>"><?php echo $b;++$b;?></a></li>
+    <?php }?>
+	<li><a href="<?php echo $this->url->get('ads',array('p'=>$last));?>">&raquo;</a></li>
+		<?php }else{?>
+		<li class="disabled"><a href="#">no data.</a></li>
+		<?php }?>
+		</ul>

@@ -1,0 +1,16 @@
+监听器
+类别		事件					参数
+user	registerSuccess
+		registerFailed
+		loginSuccess
+		loginFailed
+		loginComboChanged
+		
+table	enterTable
+		exitTable
+		exitSitAndGo
+		exitShootout
+		
+gift	giftSent
+		giftAccepted
+		

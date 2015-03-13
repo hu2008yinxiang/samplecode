@@ -1,0 +1,89 @@
+html
+{
+	-webkit-text-size-adjust: none;
+}
+body
+{
+	text-align: center;
+	font-size: 100%;
+	font-family: "Microsoft YaHei", Arial, Helvetica, Verdana, sans-serif;
+}
+.container
+{
+	width: 1024px;
+	margin: 0 auto;
+}
+.header-container img
+{
+	width: 100%;
+}
+.content-container
+{
+	padding: 0px 40px;
+}
+.title-container h1
+{
+	margin: 0;
+	padding-top: 20px;
+	font-size: 4em;
+	font-weight: normal;
+}
+.text-container
+{
+	margin: 0 auto;
+	text-align: left;
+}
+.text-container p
+{
+	padding-top: 0px;
+	padding-bottom: 5px;
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+.btn-container
+{
+	text-align: right;
+	padding-bottom: 40px;
+}
+.btn-container img
+{
+	width: 40%;
+}
+@media screen and (max-width: 1024px) {
+	body
+	{
+		font-size: 80%;
+	}
+	.container
+	{
+		width: 720px;
+	}
+	.content-container
+	{
+		padding: 0 20px;
+	}
+}
+@media screen and (max-width: 720px) {
+	body
+	{
+		font-size: 70%;
+	}
+	.container
+	{
+		width: 600px;
+	}
+	.content-container
+	{
+		padding: 0 4%;
+	}
+}
+@media screen and (max-width: 600px) {
+	body
+	{
+		font-size: 60%;
+	}
+	.container
+	{
+		width: 480px;
+	}
+}

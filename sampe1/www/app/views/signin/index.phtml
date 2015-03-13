@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign In</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php echo $this->tag->stylesheetLink('bootcss/css/bootstrap.css');?>
+<?php echo $this->tag->javascriptInclude('js/jquery-1.10.2.min.js');?>
+<?php echo $this->tag->javascriptInclude('bootcss/js/bootstrap.js');?>
+<style type="text/css">
+body {
+	padding-top: 70px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="btn-group row">
+			<a href="" class="btn btn-default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Play
+				as
+				Guest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+			<a href="<?php echo $fbLoginUrl;?>" class="btn btn-primary"><img
+				alt=""
+				style="margin-right: 5pt; width: 20pt; height: 20pt; margin-top: -12pt; margin-bottom: -10pt;"
+				src="<?php echo $this->url->getStatic('/images/icons/fb-icon.png');?>">Login
+				with Facebook<i>&nbsp;&nbsp; </i></a>
+		</div>
+		<div class="row"><?php $this->flashSession->output();?></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+每日任务规定了每日任务的id、名称、描述、图标已经任务的需求（使用某道具，完成某类型的游戏等）
+
+{
+	"100001":{
+		"name":"社交达人",
+		"desc":"向10位好友赠送礼物",
+		"icon":"static/.....",
+		"needs":{
+			"send_gift":10
+		}
+		"reward":{
+			"chip":1000,
+			"diamond":0
+		}
+	}
+},
+	"100002":{
+		"name":"万人迷",
+		"desc":"你太受欢迎了，收到20位好友的礼物",
+		"icon":"static/....",
+		"tasker":"DailyEnoughTasker"
+		"needs":{
+			"recv_gift":20
+		}
+		"reward":{
+			"chip":0,
+			"diamond":20
+		}
+	}
+}

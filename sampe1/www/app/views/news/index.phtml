@@ -1,0 +1,64 @@
+<h1>
+	News Manager <span class="pull-right btn-group"><a
+		href="<?php echo $this->url->get('news/add');?>" class="btn btn-primary">Add</a><a
+		href="<?php echo $this->url->get('news/preview');?>"
+		class="btn btn-info">Preview</a></span><span class="clearfix"></span>
+</h1>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Type</th>
+			<th>Start</th>
+			<th>End</th>
+			<th>Title</th>
+			<th>Content</th>
+			<th>Active</th>
+			<th>Operation</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php $key = $this->security->getTokenKey();$value=$this->security->getToken();?>
+	<?php foreach ($news as $n):?>
+	<tr>
+			<td><?php echo $n->news_id;?></td>
+			<td><?php echo $n->type;?></td>
+			<td><?php echo $n->start_date;?></td>
+			<td><?php echo $n->end_date;?></td>
+			<td><?php echo $n->title;?></td>
+			<td><?php echo $n->content;?></td>
+			<td
+				class="<?php echo $n->isActive(null)?'bg-success text-primary':'text-muted'?>"><?php echo $n->isActive(null)?'Yes':'No';?></td>
+
+			<td><a
+				href="javascript:confirm('确定删除?')&&(window.location = '<?php echo $this->url->get('news',array('id'=>$n->news_id,'action'=>'del','key'=>$key,'token'=>$value));?>')||void(0);">Del</a>
+				| <a
+				href="<?php echo $this->url->get('news/edit',array('id'=>$n->news_id));?>">Edit</a></td>
+		</tr>
+	<?php endforeach;?>
+	</tbody>
+</table>
+<div class="col-sm-6">
+	<h3>News的type是活动的类型。</h3>
+	<dl class="">
+		<dt>Festival</dt>
+		<dd>是指特定节日活动期间内商城货架上商品全线打折。</dd>
+		<dt>Chip Sender</dt>
+		<dd>是指活动期间内每天抽出3位送Free Chips玩家获奖10M并在第二天公示。</dd>
+		<dt>Special Offer</dt>
+		<dd>是指活动期间内每天玩家首次登录获得Special Offer。</dd>
+		<dt>Extra Login Bonus</dt>
+		<dd>是指活动期间内每天玩家登录获得额外奖励，工作日获得1M，周末获得3M。</dd>
+		<dt>Extra Task Bonus for Royal Straight Flush</dt>
+		<dd>是指活动期间内每天完成皇家同花顺任务获得额外45M奖励。</dd>
+		<dt>Extra Task Bonus for Straight Flush</dt>
+		<dd>是指活动期间内每天完成同花顺任务获得额外200K奖励。</dd>
+		<dt>Extra Task Bonus for 4 of A Kind</dt>
+		<dd>是指活动期间内每天完成四条任务获得额外45K奖励。</dd>
+	</dl>
+</div>
+<div class="col-sm-6">
+	<p>其中目前只有Festival的Title和Content具有意义，会用在News里面。Title为节日名称。Content为Selector的数组，用英文逗号分隔。</p>
+	<p>例如情人节的Festival，那么这个活动的Title就是"Valentine's
+		Day",Content可以填写2,3,2,3,2,2,2。</p>
+</div>

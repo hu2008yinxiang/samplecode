@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>崩溃报告</title>
+</head>
+<body>
+	<table border="1">
+		<caption>Release 崩溃报告</caption>
+		<thead>
+			<tr>
+				<th>项目</th>
+				<th>次数</th>
+			</tr>
+		</thead>
+		<?php foreach ($releaseCrash as $crash):?>
+		<tr>
+			<td><?php echo \Phalcon\Tag::linkTo('/view_crash/project?project='.$crash->project.'&status='.$crash->status,$crash->project);?></td>
+			<td><?php echo $crash->count;?></td>
+		</tr>
+		<?php endforeach;?>
+	</table>
+	<hr />
+	<table border="1">
+		<caption>Debug 崩溃报告</caption>
+		<thead>
+			<tr>
+				<th>项目</th>
+				<th>次数</th>
+			</tr>
+		</thead>
+		<?php foreach ($debugCrash as $crash):?>
+		<tr>
+
+			<td><?php echo \Phalcon\Tag::linkTo('/view_crash/project?project='.$crash->project.'&status='.$crash->status,$crash->project);?></td>
+
+			<td><?php echo $crash->count;?></td>
+		</tr>
+		<?php endforeach;?>
+	</table>
+</body>
+</html>

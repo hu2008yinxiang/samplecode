@@ -1,0 +1,55 @@
+安装php
+ apt-get install php5-cli php5-fpm
+配置php使用unix socket
+ 编辑/etc/php5/fpm/pool.d/www.conf
+ 设置 listen = /var/run/php5-fpm.sock
+ 
+apt-get install libpcre3-dev
+配置phalcon
+ 复制extensions/Phalcon/phalocn.so 到 /usr/lib/php5/20090626
+ 编辑/etc/php5/fpm/conf.d/phalcon.ini /etc/php5/cli/conf.d/phalcon.ini
+ 内容为：
+  [Phalcon]
+  extension=phalcon.so
+ 验证是否加载 php -m 看是否有 phalcon
+ 
+安装apcu
+ pecl install APCu 会提示对应的channel
+ 编辑 /etc/php5/fpm/conf.d/apcu.ini 内容如下
+[APCu]
+extension=apcu.so
+ 
+安装ZendOpcache
+ pecl install ZendOpcache 会提示对应的channel
+ 编辑 /etc/php5/fpm/conf.d/05-opcache.ini
+; configuration for php ZendOpcache module
+; priority=05
+zend_extension=opcache.so
+opcache.enable=1
+opcache.enable_cli=1
+opcache.fast_shutdown=0
+
+安装 php5-mysqlnd (PHP mysql 数据库驱动 ) curl (网络访问) gd （切头像）
+ apt-get install php5-mysqlnd php5-curl php5-gd
+ 
+配置nginx
+ 复制poker_php.nginx.site 到 /etc/nginx/sites-enabled/ 然后编辑端口号和根目录（指向代码的www目录）
+
+配置应用
+ 应用配置文件在
+ www/app/config/config.php 里
+ DATA_PATH 配置，建议相对于APP_PATH(APP_PATH是自动检测的，千万不要硬编码)进行配置，用于存放动态生成的文件 例如 用户头像/商店配置/昵称字典等
+ redis连接配置
+ mysql连接配置
+ 时区配置timezone
+ bind_config/facebook的AppId和AppSecret
+ 
+ 
+导入数据库
+ SQL脚本在 poker_db.sql
+
+设置礼物包
+ DATA_PATH/gifts/full.zip 加载完成后 会被重命名为 DATA_PATH/gifts/full{version}.zip
+
+
+

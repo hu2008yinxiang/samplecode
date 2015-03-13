@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><?php echo $title;?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<table border="1">
+		<caption><?php echo $title;?></caption>
+		<tr>
+			<th>项目</th>
+			<th>状态</th>
+			<th>版本</th>
+			<th>数量</th>
+		</tr>
+		<?php foreach ($records as $record):?>
+		<?php $projectUrl = $this->url->get(array('status'=>$record->status,'project'=>$record->project));?>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<?php endforeach;?>
+	</table>
+</body>
+</html>

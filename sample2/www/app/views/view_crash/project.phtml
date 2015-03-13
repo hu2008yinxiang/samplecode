@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><?php echo $project;?>的<?php echo $status ?>崩溃报告</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<table>
+		<caption><?php echo $project;?>的<?php echo $status ?>崩溃报告</caption>
+		<thead>
+			<tr>
+				<th>项目</th>
+				<th>版本号</th>
+				<th>数量</th>
+			</tr>
+		</thead>
+		<?php foreach ($result as $record):?>
+		<tr>
+			<td><?php echo \Phalcon\Tag::linkTo('/view_crash/project?project='.$project.'&status='.$status,$project)?></td>
+			<td><?php echo \Phalcon\Tag::linkTo('/view_crash/project?project='.$project.'&status='.$status.'&versionCode='.$record->versionCode,$record->versionCode);?></td>
+			<td><?php echo $record->count;?></td>
+		</tr>
+		<?php endforeach;?>
+	</table>
+</body>
+</html>

@@ -1,0 +1,6 @@
+在DATA_PATH 下会生成一些日志（*.log） 
+其中 cli开头的日志为cron任务和cli调用产生 用于记录运行状态
+poker为服务器日志
+poker_error.log 为nginx 错误日志
+poker_access.log 为nginx 访问日志
+poker_user_XXXX_XX_XX.log 为程序运行日志记录了程序里面的一些日志项

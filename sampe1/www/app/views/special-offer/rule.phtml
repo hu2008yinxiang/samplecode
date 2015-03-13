@@ -1,0 +1,21 @@
+<form action="" method="post">
+	<div
+		class="panel panel-<?php echo $this->flash->has('error')?'danger':'primary';?>">
+		<div class="panel-heading">Special Offer Rule Config</div>
+		<div class="panel-body panel-body-has-table">
+			<textarea rows="30" class="form-control" name="content"><?php echo $content;?></textarea>
+		</div>
+		<div class="panel-footer"><?php $this->flash->output();?><div
+				class="pull-right">
+				<button class="btn btn-primary" type="submit">Save Rule</button>
+				<input type="hidden"
+					name="<?php echo $this->security->getTokenKey();?>"
+					value="<?php echo $this->security->getToken();?>" /> <a
+					href="<?php echo $this->url->get('special-offer/help');?>"
+					class="btn btn-default">Get Help</a>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+
+</form>

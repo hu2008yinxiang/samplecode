@@ -1,0 +1,139 @@
+<form action="" method="post">
+	<div
+		class="panel panel-<?php echo $this->flash->has('error')?'danger':'primary';?>">
+		<div class="panel-heading">MINA Switcher</div>
+		<div class="panel-body panel-body-has-table">
+			<div class="table-responsive">
+
+				<table
+					class="table table-striped table-bordered table-hover table-scrollable">
+					<thead>
+						<tr>
+							<th>Host</th>
+							<th>Port</th>
+							<th>Active</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $ret = array_filter($servers,function($e){return $e['active'] == 'true';});if(empty($ret)){?>
+						<tr class="empty-row danger">
+							<td align="center" colspan="3">NO MINA Server configured or
+								actived yet. use default server <span class="text text-success"><?php echo $default_srv['host'].':'.$default_srv['port'];?></span>
+								is taking place.
+							</td>
+						</tr>
+						<?php }?>
+						<?php foreach ($servers as $srv){?>
+						<tr class="<?php echo $srv['error']? 'danger':''?>">
+							<td><input class="form-control" type="text" name="host[]"
+								placeholder="IP or Hostname" value="<?php echo $srv['host'];?>" /></td>
+							<td><input class="form-control" type="text" name="port[]"
+								placeholder="Port" value="<?php echo $srv['port'];?>" /></td>
+							<td><div class="btn-group">
+									<span
+										class="btn <?php echo $srv['active'] == 'true'?'btn-success active':'btn-warning';?>"
+										onclick="javascript:toggleActive(this);return false;"> <span
+										class="glyphicon glyphicon-off"></span> <span class="in-txt"><?php echo $srv['active'] == 'true'?'On':'Off';?></span>
+										<input type="hidden" name="active[]"
+										value="<?php echo $srv['active'];?>" />
+									</span> <span class="btn btn-danger" onclick="removeRow(this);"><span
+										class="glyphicon glyphicon-trash"></span> Delete</span>
+								</div></td>
+						</tr>
+						<?php }?>
+					</tbody>
+					<tfoot>
+						<tr class="info">
+							<td colspan="3" align="right"><input type="hidden"
+								name="<?php echo $this->security->getTokenKey();?>"
+								value="<?php echo $this->security->getToken();?>" />
+								<div class="btn-group">
+									<span class="btn btn-warning"
+										onclick="javascript:window.location.href = window.location.href; return true;">
+										<span class="glyphicon glyphicon-refresh"></span> Reload
+									</span> <span class="btn btn-success" onclick="addRow(this);">
+										<span class="glyphicon glyphicon-plus"></span> Add Item
+									</span> <span class="btn btn-primary" data-toggle="modal"
+										data-target="#form-confirm"> <span
+										class="glyphicon glyphicon-floppy-disk"></span> Save
+									</span>
+								</div></td>
+						</tr>
+					</tfoot>
+				</table>
+
+			</div>
+		</div>
+		<div class="panel-footer"><?php $this->flash->output();?></div>
+	</div>
+	<div id="form-confirm" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">Confirm Your Operation</h4>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure to save the configuration?</p>
+					<p>
+						The operation <span class="bg-danger">can't be undone</span> and <span
+							class="bg-danger">will applied right now</span>.
+					</p>
+				</div>
+				<div class="modal-footer">
+					<span class="btn btn-default" data-dismiss="modal"><span
+						class="glyphicon glyphicon-search"></span> Check Again</span>
+					<button class="btn btn-primary" type="submit" name="action"
+						value="save">
+						<span class="glyphicon glyphicon-floppy-disk"></span> Save Now
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+function addRow(btn){
+	var row = '<tr>\
+		<td><input class="form-control" type="text" name="host[]"\
+			placeholder="IP or Hostname" /></td>\
+		<td><input class="form-control" type="text" name="port[]"\
+			placeholder="Port" /></td>\
+		<td><div class="btn-group">\
+				<span\
+					class="btn btn-warning"\
+					onclick="javascript:toggleActive(this);return false;"> <span\
+					class="glyphicon glyphicon-off"></span> <span class="in-txt">Off</span>\
+					<input type="hidden" name="active[]"\
+					value="false" />\
+				</span> <span class="btn btn-danger" onclick="removeRow(this);"><span\
+					class="glyphicon glyphicon-trash"></span> Delete</span>\
+			</div></td>\
+	</tr>';
+	//.children('tr:last').siblings('tr.empty-row').remove().after(row);
+	var tbody = jQuery(btn).parents('table').children('tbody');
+	tbody.children('tr:last').after(row);
+	tbody.children('tr.empty-row').remove();
+}
+function removeRow(btn){
+	jQuery(btn).parents('tr').fadeOut('fast',function(){jQuery(this).remove();});
+}
+function toggleActive(btn){
+	btn = jQuery(btn);
+	var input = btn.children('input[name="active[]"]');
+	var val = input.val();
+	if(val == 'false'){
+		btn.removeClass('btn-warning').addClass('btn-success').addClass('active').children('.in-txt').text('On');
+		input.val('true');
+	}else{
+		btn.removeClass('btn-success').addClass('btn-warning').removeClass('active').children('.in-txt').text('Off');
+		input.val('false');
+	}
+}
+function formConfirm(btn){
+	//form = jQuery(btn).parents('form');
+	return false;
+}
+</script>

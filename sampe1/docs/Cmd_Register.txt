@@ -1,0 +1,28 @@
+指令内容
+指令模板 {"cmd":"Register", "type":"local", "nickname":"Android-001", "token":""}
+ 字段定义
+  字段名称 定义 参考值 可选 说明
+  type 账号类型 local|facebook 否 local为游客，facebook为Facebook注册
+  nickname 初始昵称 可由玩家设置或者生成 是 在type为local时，此值必须非空
+  token 绑定账号的token 无 否 在type非local时，此值必须非空
+   
+结果内容
+ 正确结果
+  模板
+   {
+    "cmd": "Register",
+    "errno": 0,
+    "account_id": "100433630",
+    "account_token": "bQp8dtU6A9n635BPbgYufN4lVVGFF9gKu9772y4Ftpl6PX1d0r8Tt7b498UCCeifK1i3ngBLqmTU512g2YFq33O4c65Ri0DhSx5R4i8187DNGBWSPMeaFqd05221JwqV",
+    "bind_token": "",
+    "error": "OK"
+   }
+  
+ 错误结果
+  模板
+   {
+    "cmd": "Register",
+    "errno": 205,
+    "error": "EMPTY_DATA"
+   }
+   

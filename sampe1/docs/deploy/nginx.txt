@@ -1,0 +1,5 @@
+Nginx
+安装
+  apt-get install nginx-full
+
+  

@@ -1,0 +1,34 @@
+客户端请求
+ 参数 值 可选
+ 方式 POST 否
+ MIME application/json 是
+ 内容 json字符串 否
+ 
+请求内容
+ 模板 {"account_id":"", "sessionid":"", "cmds":[...]}
+ 字段定义 
+  account_id 用户id 不需要用户相关请赋值空字符串
+  sessionid 用户会话id 没有会话或者不需要会话相关请传控字符串
+  cmds 请求的指令列表 至少包含一个指令
+  
+指令格式
+ 模板 {"cmd":"SomeAction", param1:value1, param2:value2, param3:value3 ...}
+ 字段定义
+  cmd 指令名称 非空
+  paramN 参数N 根据具体指令环境赋值
+
+响应格式
+ 模板 {"errno":0, "error":"OK", "results":[...]}
+ 字段定义
+  errno 错误码 0为正常非0为错误
+  error 错误信息
+  results cmds中指令列表对应的执行结果列表
+  
+ 执行结果格式
+  模板 {"errno":0, "error":"OK", "cmd":"SomeAction", "data":[...], key1:value1, key2:value2 ...}
+  字段定义
+   errno 错误码 0非正常非零为错误
+   error 错误信息
+   data 结果的数据数组 若执行类似获取一个列表时返回的数据将会是一个数组，此时数据将填充到此处
+   keyN 结果的数据项
+

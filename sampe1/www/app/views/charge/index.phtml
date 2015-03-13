@@ -1,0 +1,65 @@
+<h1>Charge Panel</h1>
+<div>
+	<form action="" method="get" class="form-inline">
+		<div class="input-group">
+			<input type="text" name="keyword" value="<?php echo $keyword;?>"
+				placeholder="Name or ID" class="form-control" /><span
+				class="input-group-btn"><button class="btn btn-primary"
+					type="submit">Search</button></span>
+		</div>
+	</form>
+	<?php if(isset($user)):?>
+	<?php if($user == false):?>
+	<p>User Not Found</p>
+	<?php else:?>
+	<table class="table table-bordered">
+		<tr>
+			<th>ID</th>
+			<th>Nickname</th>
+			<th>Chip</th>
+			<th>Diamond</th>
+			<th>Charge</th>
+		</tr>
+		<tr>
+			<td><?php echo $user->account_id;?></td>
+			<td><?php echo $user->nickname;?></td>
+			<td><?php echo $user->chip;?></td>
+			<td><?php echo $user->diamond;?></td>
+			<td><a
+				href="<?php echo $this->url->get('/charge/go',array('id'=>$user->account_id));?>">Charge</a></td>
+		</tr>
+	</table>
+	<?php endif;?>
+	<?php endif;?>
+</div>
+<?php if($this->flashSession->has('success')):?>
+<div class="modal fade" id="msg">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Message</h4>
+			</div>
+			<div class="modal-body">
+				<?php $this->flashSession->output();?>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script type="text/javascript">
+<!--
+jQueryLoaded(function(){
+	jQuery('#msg').modal('show');
+});
+//-->
+</script>
+<?php endif;?>

@@ -1,0 +1,17 @@
+<form action="" method="post">
+	<input type="hidden"
+		name="<?php echo $this->security->getTokenKey();?>"
+		value="<?php echo $this->security->getToken();?>" />
+	<div class="form-group">
+		<label for="msg">Mantaince Msg</label>
+		<textarea name="msg" id="msg" cols="30" rows="6" class="form-control"><?php echo htmlentities($msg,ENT_IGNORE,'UTF-8');?></textarea>
+	</div>
+	<div class="form-group">
+	<?php if(!empty($msg)){?>
+		<button type="submit" name="action" value="end"
+			class="btn btn-success">End Maintaince</button>
+			<?php }?>
+		<button type="submit" name="action" value="start"
+			class="btn btn-danger">Start Maintaince</button>
+	</div>
+</form>

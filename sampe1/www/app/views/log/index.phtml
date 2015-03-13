@@ -1,0 +1,45 @@
+<div class="btn-group-vertical col-md-3">
+	<button class="btn btn-info">Log List</button>
+<?php foreach ($logs as $l=>$p){?>
+<?php if($log == $l){?>
+<div class="btn-group">
+		<a class="btn btn-primary dropdown-toggle"
+			href="<?php echo $this->url->get('log',array('log'=>$l));?>"
+			data-toggle="dropdown"><?php echo $l;?> <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+			<li><a
+				href="<?php echo $this->url->get('log',array('log'=>$l,'line'=>($line+$default_line*4)));?>">Pre
+				<?php echo $default_line*4;?> Lines</a></li>
+			<li><a
+				href="<?php echo $this->url->get('log',array('log'=>$l,'line'=>($line+$default_line)));?>">Pre
+				<?php echo $default_line;?> Lines</a></li>
+			<li><a
+				href="<?php echo $this->url->get('log',array('log'=>$l,'line'=>($line-$default_line)));?>">Post
+				<?php echo $default_line;?> Lines</a></li>
+			<li><a
+				href="<?php echo $this->url->get('log',array('log'=>$l,'line'=>($line-$default_line*4)));?>">Post
+				<?php echo $default_line*4;?> Lines</a></li>
+			<li class="divider"></li>
+			<li><a
+				href="<?php echo $this->url->get('log',array('log'=>$l,'line'=>($default_line)));?>">End
+				<?php echo $default_line;?> Lines</a></li>
+		</ul>
+	</div>
+<?php
+    } else {
+        ?>
+        <a class="btn btn-default"
+		href="<?php echo $this->url->get('log',array('log'=>$l));?>"><?php echo $l;?></a>
+        <?php
+    }
+}
+?>
+</div>
+
+<pre class="col-md-9">
+<?php
+foreach ($content as $line) {
+    echo htmlentities($line, ENT_IGNORE, 'UTF-8'), PHP_EOL;
+}
+?>
+</pre>

@@ -1,0 +1,35 @@
+<h1>Monthly Offer</h1>
+<form action="" method="post" class="form-horizontal">
+	<input type="hidden"
+		name="<?php echo $this->security->getTokenKey();?>"
+		value="<?php echo $this->security->getToken();?>" />
+	<div class="form-group">
+		<label for="iapid" class="col-sm-2">IAP ID</label>
+		<div class="col-sm-10">
+			<input class="form-control" type="text" id="iapid" name="iapid"
+				value="<?php echo $offer['iapid'];?>" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="price" class="col-sm-2">Price</label>
+		<div class="col-sm-10">
+			<input class="form-control" type="text" id="price" name="price"
+				value="<?php echo $offer['price'];?>" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="amount" class="col-sm-2">Amount</label>
+		<div class="col-sm-10">
+			<input class="form-control" type="text" id="amount" name="amount"
+				value="<?php echo $offer['amount'];?>" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="perday" class="col-sm-2">Perday</label>
+		<div class="col-sm-10">
+			<input class="form-control" type="text" id="perday" name="perday"
+				value="<?php echo $offer['perday'];?>" />
+		</div>
+	</div>
+	<button type="submit" class="btn btn-primary form-control">Save</button>
+</form>

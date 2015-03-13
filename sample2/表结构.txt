@@ -1,0 +1,15 @@
+CREATE TABLE `log_crash` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand` varchar(1024) DEFAULT NULL,
+  `versionCode` int(4) DEFAULT NULL,
+  `project` varchar(255) DEFAULT NULL,
+  `model` varchar(255) DEFAULT NULL,
+  `androidSdkInt` int(4) DEFAULT NULL,
+  `versionName` varchar(32) DEFAULT NULL,
+  `manufacturer` varchar(1024) DEFAULT NULL,
+  `log_file` varchar(256) DEFAULT NULL,
+  `uuid` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `project` (`project`,`versionCode`,`log_file`(255)),
+  KEY `uuid` (`uuid`(255))
+) ENGINE=InnoDB AUTO_INCREMENT=856096 DEFAULT CHARSET=utf8

@@ -1,0 +1,28 @@
+<h1>News Preview</h1>
+<center>
+	<form action="" class="form-inline center-block">
+		<div class="form-group">
+			<label for="news_ids">News IDs</label> <input type="text"
+				id="news_ids" name="news_ids" placeholder="<?php echo $ids;?>"
+				value="<?php echo $ids;?>" class="form-control" />
+		</div>
+		<a href="javascript: preview(this);" class="btn btn-primary">Preview</a>
+	</form>
+</center>
+<iframe style="margin-top: 10pt;" class="center-block"
+	id="preview_frame"
+	src="javascript:'Please input the ids of news your want to preview(seprated by comma), then click the Preview button.';"
+	frameborder="1" height="275pt" width="460pt"></iframe>
+<script type="text/javascript">
+function preview(btn){
+	btn = jQuery(btn);
+	var url_base = '<?php echo str_replace('/static/','/',$this->url->getStatic('news/news.php'));?>';
+	var ids = jQuery('input#news_ids').val();
+	ids = ids.split(',').filter(function (ele){return ele.trim().length != 0;});
+	var params = '?';
+	for(var i = 0; i < ids.length; ++i){
+		params += 'ids['+i+']='+ids[i]+'&';
+	}
+	var frame = jQuery('#preview_frame').attr('src',url_base + params);
+}
+</script>

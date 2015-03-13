@@ -1,0 +1,38 @@
+指令内容
+指令模板 {"cmd":"Login", "password":"..."}
+ 字段定义
+  字段名称 定义 参考值 可选 说明
+  password 密码 无 否 注册时返回的account_token
+   
+结果内容
+ 正确结果
+  模板
+   {
+    "cmd": "Login",
+    "errno": 0,
+    "account_id": "100433124",
+    "nickname": "Hello World!",
+    "gender": "secret",
+    "photo": "2",
+    "type": "local", // 账号类型
+    "chip": "0",
+    "diamond": "0",
+    "level": "1",
+    "best_hand": [], // 最大手牌
+    "biggest_win": "0", // 最大赢注
+    "vip_score": "0",
+    "vip_level": "0",
+    "login_combo": 6,
+    "first_pay": "true",
+    "sessionid": 1408674561,
+    "error": "OK"
+   }
+  
+ 错误结果
+  模板
+   {
+    "cmd": "Login",
+    "errno": 201,
+    "error": "LOGIN_FAILED"
+   }
+   

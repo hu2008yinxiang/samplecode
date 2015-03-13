@@ -1,0 +1,10 @@
+升级礼物时的步骤是 将礼物包命名为full.zip 放到 DATA_PATH/gifts 目录 
+程序会在请求时自动升级礼物包 生成的礼物清单会缓存到 DATA_PATH/gifts_config.php 里
+
+礼物重置版本号的步骤
+删除DATA_PATH/gifts_config.php 然后删除 DATA_PATH/gifts 目录下所有的zip包
+将新礼物包 放入 DATA_PATH/gifts 命名为 full.zip
+程序会在请求时自动完成重置
+
+
+

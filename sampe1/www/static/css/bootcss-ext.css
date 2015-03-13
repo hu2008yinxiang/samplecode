@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+
+table.table td .btn-group {
+	display: -webkit-inline-box;
+	display: -moz-inline-box;
+	display: -ms-inline-flexbox;
+	display: -webkit-inline-flex;
+	display: inline-flex;
+}
+
+.panel-body-has-table {
+	padding: 0;
+}
+
+@-moz-document url-prefix () {fieldset {
+	display: table-cell;
+}
+
+}
+:last-child.table {
+	margin-bottom: 0;
+}
+
+

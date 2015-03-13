@@ -1,0 +1,3 @@
+WEB管理页面地址为 /web.php
+除首页外均需要认证 认证用户名和密码在 config.php的 auth节
+日志配置在config.php 的 logger 节，可以设置更加严重的级别来控制log输出

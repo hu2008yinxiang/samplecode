@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>最新崩溃记录</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php echo $this->tag->stylesheetLink('bootcss/css/bootstrap.css');?>
+<?php echo $this->tag->javascriptInclude('js/jquery-1.10.2.min.js');?>
+<?php echo $this->tag->javascriptInclude('bootcss/js/bootstrap.js');?>
+<style type="text/css">
+body {
+	padding-top: 70px;
+}
+</style>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#navbar-data-div">
+				<span class="sr-only">切换</span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<?php echo \Phalcon\Tag::linkTo(array("view",'崩溃报告','class'=>'navbar-brand'));?>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar-data-div">
+			<ul class="nav navbar-nav">
+				<li class=""><?php echo \Phalcon\Tag::linkTo(array("view",'查看'));?></li>
+				<li class=""><?php echo \Phalcon\Tag::linkTo(array('upload','上传'))?></li>
+				<li class=""><?php echo \Phalcon\Tag::linkTo(array("archieve",'历史归档'));?></li>
+				<li class="active"><?php echo \Phalcon\Tag::linkTo(array("view/recent",'最新崩溃'));?></li>
+			<li class=""><?php echo \Phalcon\Tag::linkTo(array("manage/index",'SO管理'));?></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<h1>最新崩溃记录</h1>
+		</div>
+		<div class="row list-group">
+		<?php foreach($records as $record):?>
+			<div href="#" class="list-group-item">
+				<div class="row">
+					<strong class="col-sm-1 col-xs-3">堆栈</strong><span
+						class="col-sm-5 col-xs-9"> <?php echo \Phalcon\Tag::linkTo(array(array('for'=>'ViewCrash::showByMD5','project'=>$record->project,'status'=>$record->status,'versionCode'=>$record->versionCode,'md5'=>$record->proc),$record->proc,'class'=>'label label-warning'));?></span>
+					<strong class="col-sm-1 col-xs-3">时间</strong> <span
+						class="col-sm-5 col-xs-9"><?php echo $record->time_stamp;?></span>
+
+					<strong class="col-sm-1 col-xs-3">项目</strong> <span
+						class="col-sm-2 col-xs-3"><?php echo \Phalcon\Tag::linkTo(array(array('for'=>'ViewCrash::showByProject','project'=>$record->project,'status'=>$record->status),$record->project,'class'=>''));?></span>
+					<strong class="col-sm-1 col-xs-3">版本</strong> <span
+						class="col-sm-2 col-xs-3"><?php echo \Phalcon\Tag::linkTo(array(array('for'=>'ViewCrash::showByVersionCode','project'=>$record->project,'status'=>$record->status,'versionCode'=>$record->versionCode,'md5'=>$record->proc),$record->versionCode,'class'=>''));?></span>
+
+					<strong class="col-sm-1 col-xs-3">状态</strong> <span
+						class="col-sm-2 col-xs-3"><?php echo \Phalcon\Tag::linkTo(array(array('for'=>'ViewCrash::showByStatus','project'=>$record->project,'status'=>$record->status,'versionCode'=>$record->versionCode,'md5'=>$record->proc),$record->status,'class'=>''));?></span>
+					<strong class="col-sm-1 col-xs-3">制造商</strong> <span
+						class="col-sm-2 col-xs-3"><?php echo $record->manufacturer;?></span>
+
+					<strong class="col-sm-1 col-xs-3">型号</strong> <span
+						class="col-sm-2 col-xs-3"><?php echo $record->model;?></span> <strong
+						class="col-sm-1 col-xs-3">品牌</strong> <span
+						class="col-sm-2 col-xs-3"><?php echo $record->brand;?></span> <strong
+						class="col-sm-1 col-xs-3">安卓API</strong> <span
+						class="col-sm-2 col-xs-3"><?php echo $record->androidSdkInt;?></span>
+					<strong class="col-sm-1 col-xs-3">版本号</strong> <span
+						class="col-sm-2 col-xs-3"><?php echo $record->versionName;?></span>
+				</div>
+
+			</div> <?php endforeach;?>
+			
+		</div>
+
+	</div>
+</body>
+</html>
